@@ -2,10 +2,8 @@ package com.example.dailyplannerapp.add_edit_event
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -28,7 +26,7 @@ class AddEditEventViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _eventName = mutableStateOf(EventTextFieldState(
-        hint = "Agenda Item"
+        text = "Grocery Shopping"
     ))
     val eventName: State<EventTextFieldState> = _eventName
 
@@ -45,7 +43,7 @@ class AddEditEventViewModel @Inject constructor(
     val eventStart : State<EventTextFieldState> = _eventStart
 
     private val _eventEnd = mutableStateOf(EventTextFieldState(
-        text = "24:00"
+        text = "23:59"
     ))
     val eventEnd : State<EventTextFieldState> = _eventEnd
 

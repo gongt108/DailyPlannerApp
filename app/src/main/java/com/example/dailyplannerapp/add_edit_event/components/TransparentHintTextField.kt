@@ -1,14 +1,9 @@
 package com.example.dailyplannerapp.add_edit_event.components
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,8 +11,6 @@ import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.dailyplannerapp.add_edit_event.components.ui.theme.DailyPlannerAppTheme
 
 @Composable
 fun TransparentHintTextField(
@@ -33,7 +26,7 @@ fun TransparentHintTextField(
     Box(
         modifier = modifier
     ) {
-        BasicTextField(
+        OutlinedTextField(
             value = text,
             onValueChange = onValueChange,
             singleLine = singleLine,

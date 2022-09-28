@@ -1,10 +1,6 @@
 package com.example.dailyplannerapp.data.data_source
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.dailyplannerapp.domain.model.Event
 import kotlinx.coroutines.flow.Flow
 
@@ -21,4 +17,5 @@ interface EventDao {
 
     @Delete
     suspend fun deleteEvent(event: Event)
+
 }

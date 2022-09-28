@@ -1,6 +1,7 @@
 package com.example.dailyplannerapp.domain.repository
 
 import com.example.dailyplannerapp.domain.model.Event
+import com.example.dailyplannerapp.events.EventsEvent
 import kotlinx.coroutines.flow.Flow
 
 interface EventRepository {

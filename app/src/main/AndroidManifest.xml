@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".EventApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,24 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyPlannerApp"
         tools:targetApi="31">
-        <activity
-            android:name=".TransparentHintTextField"
-            android:exported="false"
-            android:label="@string/title_activity_transparent_hint_text_field"
-            android:theme="@style/Theme.DailyPlannerApp">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".AddEditEventScreen"
-            android:exported="false"
-            android:label="@string/title_activity_add_edit_event_screen"
-            android:theme="@style/Theme.DailyPlannerApp">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
         <activity
             android:name=".DailyAgendaActivity"
             android:exported="false"

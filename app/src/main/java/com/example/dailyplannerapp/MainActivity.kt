@@ -18,7 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.dailyplannerapp.domain.repository.EventRepository
+import com.example.dailyplannerapp.domain.use_case.EventUseCases
+import com.example.dailyplannerapp.events.EventsEvent
+import com.example.dailyplannerapp.events.EventsViewModel
 import com.example.dailyplannerapp.ui.theme.DailyPlannerAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +37,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Calendar()
+
+
                 }
             }
         }
+
     }
 }
 
@@ -71,6 +80,7 @@ fun Calendar() {
                 }) {
                     Text(text = "Show List")
                 }
+
             }
 
         }

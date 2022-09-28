@@ -42,6 +42,7 @@ class EventsViewModel @Inject constructor(
                     recentlyDeletedEvent = null
                 }
             }
+
         }
     }
 
