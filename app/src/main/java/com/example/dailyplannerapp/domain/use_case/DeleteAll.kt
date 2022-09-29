@@ -4,10 +4,10 @@ import com.example.dailyplannerapp.domain.model.Event
 import com.example.dailyplannerapp.domain.repository.EventRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetEvents(
+class DeleteAll(
     private val repository: EventRepository
 ) {
-    operator fun invoke(): Flow<List<Event>> {
-        return repository.getEvents()
+    suspend operator fun invoke(){
+        return repository.deleteAll()
     }
 }

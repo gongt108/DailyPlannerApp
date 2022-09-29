@@ -13,4 +13,6 @@ interface EventRepository {
     suspend fun insertEvent(event: Event)
 
     suspend fun deleteEvent(event: Event)
+
+    suspend fun deleteAll()
 }

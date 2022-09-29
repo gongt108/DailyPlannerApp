@@ -25,4 +25,8 @@ class EventRepositoryImpl(
     override suspend fun deleteEvent(event: Event) {
         dao.deleteEvent(event)
     }
+
+    override suspend fun deleteAll() {
+        dao.deleteAll()
+    }
 }

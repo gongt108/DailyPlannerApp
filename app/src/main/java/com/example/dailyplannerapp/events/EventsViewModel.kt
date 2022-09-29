@@ -42,7 +42,6 @@ class EventsViewModel @Inject constructor(
                     recentlyDeletedEvent = null
                 }
             }
-
         }
     }
 
@@ -56,5 +55,11 @@ class EventsViewModel @Inject constructor(
                 )
             }
             .launchIn(viewModelScope)
+    }
+
+    suspend fun deleteAll(){
+        viewModelScope.launch {
+            eventUseCases.deleteAll()
+        }
     }
 }

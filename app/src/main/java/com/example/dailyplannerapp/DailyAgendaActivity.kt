@@ -72,22 +72,7 @@ class DailyAgendaActivity : ComponentActivity() {
                         )
                     },
                     scaffoldState = scaffoldState,
-
-                            //
-                    //                    drawerContent = {
-                    //                        // Drawer content
-                    //                        Column(
-                    //                            modifier = Modifier.fillMaxSize(),
-                    //                            verticalArrangement = Arrangement.Center
-                    //                        ) {
-                    //                            AddEditEventScreen(
-                    //                                navController = navController,
-                    //                            )
-                    //                        }
-                    //                    },
-
-                            //floatingActionButtonPosition = FabPosition.End,
-                            floatingActionButton = {
+                    floatingActionButton = {
                         FloatingActionButton (scaffoldState, scope, dialogState)
                     },
                     content = {
@@ -96,7 +81,7 @@ class DailyAgendaActivity : ComponentActivity() {
                         ) {
                             AddEditEventDialog(sampleEvent, dialogState)
                             Header()
-                            NavigationBar()
+                            NavigationBar(viewModel)
                             ScheduleBackground(dialogState, viewModel)
                         }
 
@@ -314,16 +299,31 @@ fun Header() {
 
 @Composable
 fun NavigationBar(
+    viewModel: EventsViewModel,
     modifier: Modifier = Modifier
+        .padding(8.dp)
 ){
     val activity = (LocalContext.current as? Activity)
+    val coroutineScope = rememberCoroutineScope()
+
     Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth()
     ) {
         Button(
             onClick = { activity?.finish() }
         ) {
             Text(text = "Go to Month View")
+        }
+
+        Button(
+            onClick = {
+                coroutineScope.launch {
+                    viewModel.deleteAll()
+                }
+            }
+        ) {
+            Text(text = "Clear Agenda")
         }
     }
 }
@@ -337,52 +337,36 @@ fun Schedule(
 ) {
     val events = viewModel.state.value.events
     val hourHeight = 50
-//    Column(
-//        modifier = Modifier
-//            .padding(80.dp, 26.dp, 16.dp, 16.dp)
-//    ){
-        Box (
-            modifier = Modifier
-                .padding(80.dp, 26.dp, 16.dp, 16.dp)
-        ){
-            events.sortedBy(Event::start).forEach { event ->
-                val dateStart = LocalDateTime.parse("${event.date}T00:00:00")
-                val startTime = LocalDateTime.parse("${event.date}T${event.start}")
-                val endTime = LocalDateTime.parse("${event.date}T${event.end}")
-                val duration = ChronoUnit.HOURS.between(startTime, endTime)
-                val eventHeight = (hourHeight * duration).toFloat()
-                val startHour = ChronoUnit.HOURS.between(dateStart, startTime)
-                val paddingHeight = (startHour * hourHeight).toFloat()
 
-                EventItem(
-                    event = event,
-                    modifier = Modifier
-                        .height(eventHeight.dp)
-                        .offset(y = paddingHeight.dp),
-                    onDeleteClick = {
-                        viewModel.onEvent(EventsEvent.DeleteEvent(event))
+    Box (
+        modifier = Modifier
+            .padding(80.dp, 26.dp, 16.dp, 16.dp)
+    ){
+        events.sortedBy(Event::start).forEach { event ->
+            val dateStart = LocalDateTime.parse("${event.date}T00:00:00")
+            val startTime = LocalDateTime.parse("${event.date}T${event.start}")
+            val endTime = LocalDateTime.parse("${event.date}T${event.end}")
+            val duration = ChronoUnit.HOURS.between(startTime, endTime)
+            val eventHeight = (hourHeight * duration).toFloat()
+            val startHour = ChronoUnit.HOURS.between(dateStart, startTime)
+            val paddingHeight = (startHour * hourHeight).toFloat()
 
-                    }
+            EventItem(
+                event = event,
+                modifier = Modifier
+                    .height(eventHeight.dp)
+                    .offset(y = paddingHeight.dp),
+                onDeleteClick = {
+                    viewModel.onEvent(EventsEvent.DeleteEvent(event))
 
-                )
-            }
+                }
 
-
-//        }
+            )
+        }
 
     }
 
 }
-
-//@RequiresApi(Build.VERSION_CODES.O)
-//fun editEvent(
-//    event: Event,
-//    dialogState: MutableState<Boolean>
-//) {
-//    AddEditEventDialog(event = event, dialogState = dialogState)
-//    dialogState.value = true
-//
-//}
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable

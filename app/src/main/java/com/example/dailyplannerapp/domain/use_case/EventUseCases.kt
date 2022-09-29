@@ -6,6 +6,6 @@ data class EventUseCases (
     val getEvents: GetEvents,
     val deleteEvent: DeleteEvent,
     val addEvent: AddEvent,
-    val getEvent: GetEvent
-
+    val getEvent: GetEvent,
+    val deleteAll: DeleteAll
 )

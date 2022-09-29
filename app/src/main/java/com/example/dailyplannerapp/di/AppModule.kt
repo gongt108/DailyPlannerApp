@@ -39,7 +39,10 @@ object AppModule {
             getEvents = GetEvents(repository),
             deleteEvent = DeleteEvent(repository),
             addEvent = AddEvent(repository),
-            getEvent = GetEvent(repository)
+            getEvent = GetEvent(repository),
+            deleteAll = DeleteAll(repository)
         )
     }
+
+
 }
